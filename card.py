@@ -4,5 +4,5 @@ class Card:
     def __init__(self,rank_index,suit_index):
         self.rank = POSSIBLE_RANK[rank_index]
         self.suit = POSSIBLE_SUIT[suit_index]
-
+    card_title = (self.suit, self.rank)
    
