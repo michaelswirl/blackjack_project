@@ -2,6 +2,8 @@ from card import Card
 import random
 
 class Deck():
+    current_card = None
+    count = 0
     cards = []
     def __init__(self):
         self.suit_counter = 0
@@ -20,9 +22,22 @@ class Deck():
         for c in self.cards:
             titles.append(c.card_title)
         return titles
+    def deal(self):
+        self.current_card = self.cards.pop(0)
     
 deck = Deck()
+print("Number of Cards in Deck:")
+print(len(deck.cards))
+print("Unshuffled Deck:")
+print(deck.display())
+print("Shuffled Deck:")
 deck.shuffle()
 print(deck.display())
-deck.shuffle()
+deck.deal()
+print("Dealt Card:")
+print(deck.current_card.card_title)
+print("Number of Cards Left in Deck:")
+print(len(deck.cards))
+print("Remaining Deck:")
 print(deck.display())
+
