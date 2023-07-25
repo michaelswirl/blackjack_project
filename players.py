@@ -75,6 +75,9 @@ class Player:
         self.current_bet = maximum 
 
 
-
-
-
+class Dealer(Player):
+    def __init__(self, first, last, bank):
+        self.dealer = True
+        self.first_name = first
+        self.last_name = last
+        self.full_name = 'Dealer ' + first
