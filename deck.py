@@ -15,9 +15,15 @@ class Deck():
                 self.rank_counter += 1
             self.suit_counter += 1
     def shuffle(self):
-        random.shuffle(self)
+        random.seed = 46
+        random.shuffle(self.cards)
+        random.shuffle(self.card_titles)
     
 deck = Deck()
 
 print(deck.card_titles)
 print(len(deck.cards))
+
+deck.shuffle()
+
+print(deck.card_titles)
