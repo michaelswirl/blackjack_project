@@ -8,6 +8,7 @@ class Shoe(Deck):
             deck = Deck()
             self.decks.append(deck)
 
-Shoe(8)
+shoe = Shoe(8)
 
-print(Shoe.cards)
+print(shoe.cards)
+print(shoe.display())
