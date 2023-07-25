@@ -1,18 +1,23 @@
 from card import Card
+import random
 
-class Deck(Card):
+class Deck():
     cards = []
     card_titles = []
     def __init__(self):
-        suit_counter = 0
+        self.suit_counter = 0
         for suit in Card.POSSIBLE_SUIT:
-            rank_counter = 0
+            self.rank_counter = 0
             for rank in Card.POSSIBLE_RANK:
-                card = Card(suit == Card.POSSIBLE_SUIT[suit_counter], rank == Card.POSSIBLE_RANK[rank_counter])
+                card = Card(suit_index = self.suit_counter, rank_index = self.rank_counter)
                 self.cards.append(card)
                 self.card_titles.append(card.card_title)
-
-
+                self.rank_counter += 1
+            self.suit_counter += 1
+    def shuffle(self):
+        random.shuffle(self)
+    
 deck = Deck()
 
 print(deck.card_titles)
+print(len(deck.cards))
