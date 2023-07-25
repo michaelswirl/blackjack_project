@@ -67,11 +67,11 @@ class Player:
         self.last_name = last
         self.bankroll = bank
         self.full_name = first + ' ' + last
-    def min_bet(minumum):
+    def min_bet(self,minimum):
         self.current_bet = minimum
-    def mid_bet(minimum):
+    def mid_bet(self,minimum):
         self.current_bet = minimum * 0.5
-    def high_bet(maximum):
+    def high_bet(self,maximum):
         self.current_bet = maximum 
 
 
@@ -81,3 +81,4 @@ class Dealer(Player):
         self.first_name = first
         self.last_name = last
         self.full_name = 'Dealer ' + first
+
