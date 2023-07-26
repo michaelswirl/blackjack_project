@@ -14,10 +14,11 @@ class Shoe(Deck):
         deck = Deck()
         self.decks.append(deck)
 
-shoe = Shoe(8)
+#shoe = Shoe(8)
 
-print(shoe.count)
-print(len(shoe.cards))
-print(shoe.display())
-print(len(shoe.decks))
-print(shoe.decks)
+# use this to test
+#print(shoe.count)
+#print(len(shoe.cards))
+#print(shoe.display())
+#print(len(shoe.decks))
+#print(shoe.decks)

@@ -51,17 +51,15 @@ class Player:
         "Owens", "Reynolds", "Fisher", "Ellis", "Harrison", 
         "Gibson", "McDonald", "Cruz", "Marshall", "Ortiz"
         ]
-    def __init__(self, first, last, bank):
+    def __init__(self, first, last):
         self.first_name = first
         self.last_name = last
         self.full_name = first + ' ' + last
-    def current_hand(card_1, card_2):
-        self.first_card = card_1
-        self.second_card = card_2
-
+        self.first_card = None
+        self.cards = []
 
 class Dealer(Player):
-    def __init__(self, first, last, bank):
+    def __init__(self, first, last):
         self.dealer = True
         self.first_name = first
         self.last_name = last
@@ -72,15 +70,16 @@ class Gambler(Player):
         self.dealer = False
         self.first_name = first
         self.last_name = last
-        self.full_name = 'Dealer ' + first
+        self.full_name = first + ' ' + last
         self.bankroll = bank
         self.seat = position
         self.minimum_bet = min
         self.maximum_bet = max
-    def current_hand(card_1, card_2):
-        self.first_card = card_1
-        self.second_card = card_2
-        self.hand = [card_1.card_title,]
+        self.current_cards = []
+
+
+
+        
     
 
 
