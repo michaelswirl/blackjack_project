@@ -39,6 +39,7 @@ class Game:
             print("Player name: " + player.full_name)
             print("Bankroll: " + str(player.bankroll))
             print("Current Hand: " + ', '.join(player.current_cards))
+    
 
     
 
