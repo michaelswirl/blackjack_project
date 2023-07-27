@@ -33,12 +33,18 @@ class Game:
             self.table[self.counter] = gambler
             self.counter += 1
         self.shoe = Shoe(num_of_decks)
+        self.shoe.deal_to_table(table= self.table,dealer=self.dealer)
     def display_table(self):
         for seat, player in self.table.items():
             print("Seat number: " + str(seat))
             print("Player name: " + player.full_name)
             print("Bankroll: " + str(player.bankroll))
-            print("Current Hand: " + ', '.join(player.current_cards))
+            print("Current Hand: ") 
+            hand = [card.card_title for card in player.cards]
+            print(hand)
+        self.dealer_hand = [card.card_title for card in self.dealer.cards]
+        print("Dealer Hand: ")
+        print(self.dealer_hand)
     
 
     

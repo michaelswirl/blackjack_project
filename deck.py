@@ -4,7 +4,7 @@ import random
 class Deck():
     def __init__(self):
         self.current_card = None
-        self.count = None
+        self.count = 0
         self.cards = []
         self.suit_counter = 0
         for suit in Card.POSSIBLE_SUIT:
@@ -26,6 +26,15 @@ class Deck():
     def deal(self):
         self.current_card = self.cards.pop(0)
         self.count = len(self.cards)
+        return self.current_card
+    def deal_to_table(self, table, dealer):
+        dealer.cards.append(self.deal())
+        for i in range(0,2):
+            for player in table.values():
+                card = self.deal()
+                player.cards.append(card)
+        dealer.cards.append(self.deal())
+        
     
 #deck = Deck()
 #print("Number of Cards in Deck:")
