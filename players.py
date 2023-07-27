@@ -60,6 +60,7 @@ class Dealer(Player):
         self.first_name = first
         self.last_name = last
         self.full_name = 'Dealer ' + first
+        self.hand_value = 0
         self.cards = []
 
 class Gambler(Player):
@@ -73,6 +74,7 @@ class Gambler(Player):
         self.minimum_bet = min
         self.maximum_bet = max
         self.cards = []
+        self.hand_value = 0
         self.hand = [card.card_title for card in self.cards]
 
 

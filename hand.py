@@ -7,14 +7,14 @@ import random
 class Hand:
     ABOVE_21_RANK_VALUES = {'A': 1, '2': 2, '3': 3,'4': 4,'5': 5, '6': 6,'7': 7,'8': 8,'9':9, '10':10, 'J':10,'Q':10,'K':10}
     BELOW_21_RANK_VALUES = {'A': 11, '2': 2, '3': 3,'4': 4,'5': 5, '6': 6,'7': 7,'8': 8,'9':9,'10':10,  'J':10,'Q':10,'K':10}
-    def __init__(self, name, player_cards):
+    def __init__(self, name, player):
         self.name = name
-        self.hand = player_cards
+        self.hand = player.cards
         self.values = []
         self.ranks = []
         self.dealer_face_up_card = None
         self.dealer_face_down_card = None
-        for card in player_cards:
+        for card in self.hand:
             self.ranks.append(card.rank)
             value = Hand.BELOW_21_RANK_VALUES[card.rank]
             self.values.append(value)
@@ -24,6 +24,7 @@ class Hand:
                 first_instance = self.values.index(11) 
                 self.values[first_instance] = 1
                 self.hand_value = sum(self.values)
+                player.hand_value = self.hand_value
     def get_value(self):
         return self.hand_value
     def add_card(self, card):

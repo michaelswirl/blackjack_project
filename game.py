@@ -53,8 +53,13 @@ class Game:
         print(self.shoe.get_shoe_size())
         self.shoe.shuffle(25)
         self.shoe.deal_to_table(table= self.table,dealer=self.dealer)
+        print("Dealer Face Up Card: ")
+        print('--------------------------------------------------')
+        print(' ')
+        self.dealer_face_up_card = self.dealer.cards[0].card_title
+        print(self.dealer_face_up_card)
         for seat, player in self.table.items():
-            hand = Hand(name = player.full_name,player_cards = player.cards)
+            hand = Hand(name = player.full_name,player= player)
             hand.display()
             print('--------------------------------------------------')
             while hand.hand_value < 17:
@@ -71,14 +76,29 @@ class Game:
             else:
                 print(player.full_name + " stands with " + str(hand.hand_value))
             print('--------------------------------------------------')
+            print(' ')
+        dealer_hand = Hand(name = self.dealer.full_name,player= self.dealer)
+        dealer_hand.display()
+        while dealer_hand.hand_value < 17:
+                print(self.dealer.full_name + " hits.")
+                hit_card = self.shoe.hit(player)
+                dealer_hand.add_card(hit_card)
+                dealer_hand.display()
+                if dealer_hand.hand_value >= 17:
+                    break
+        if dealer_hand.hand_value > 21:
+            print(self.dealer.full_name + " busts with " + str(dealer_hand.hand_value)+ ".")
+        elif dealer_hand.hand_value == 21:
+            print(self.dealer.full_name + " Blackjack!") 
+        else:
+            print(self.dealer.full_name + " stands with " + str(dealer_hand.hand_value))
+        print('--------------------------------------------------')
+        print(' ')
 
-       
-        
-try:
-    game2 = Game(num_of_players=7, num_of_decks=8,min_bet = 20, max_bet=100)
-    print(game2.play_hand())
-except Exception as e:
-    print("Exception occurred: ", e)
+
+
+game = Game(num_of_players=7, num_of_decks=8,min_bet = 20, max_bet=100)
+print(game.play_hand())
 
 
 
