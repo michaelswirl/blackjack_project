@@ -45,10 +45,41 @@ class Game:
                 print("Current Hand: ") 
                 hand = [card.card_title for card in player.cards]
                 print(hand)
-            print("Count: " + str(self.shoe.count))
         self.dealer_hand = [card.card_title for card in self.dealer.cards]
         print("Dealer Hand: ")
         print(self.dealer_hand[0])
+    def place_bet(self,amount, player):
+        self.bet = amount
+        self.bettor = player
+        self.bettor.current_bet = self.bet
+        self.bettor.bankroll -= self.bet
+        return self.bettor.current_bet
+    def evaluate_hand(self):
+        target = self.dealer.hand_value
+        print("Dealer hand: " + str(target))
+        for seat, player in self.table.items():
+            bet_amount = player.minimum_bet
+            self.place_bet(bet_amount,player)
+            hand = player.hand_value
+            print('Player: '+ player.full_name)
+            print(player.full_name + " Starting Bankroll: " + str(player.bankroll))
+            print(player.full_name + " Bet: " + str(player.current_bet))
+            print('Hand: '+ str(hand))
+            print('Dealer Hand: '+ str(target))
+            if hand == target:
+                print(player.full_name + " pushes at " + str(hand))
+                player.bankroll += bet_amount
+            elif hand == 21:
+                print(player.full_name + " beats dealer with blackjack.")
+                player.bankroll += bet_amount * 3
+            elif hand > 21:
+                print(player.full_name + " busts with " +str(hand))
+                player.bankroll -= bet_amount
+            else:
+                print(player.full_name + " beats dealer with " + str(hand) + '.')
+                player.bankroll += bet_amount * 2 
+            print(player.full_name + " Current Bankroll: " + str(player.bankroll)) 
+            print('--------------------------------------------------')   
     def play_hand(self):
         print(self.shoe.get_shoe_size())
         self.shoe.shuffle(25)
@@ -61,6 +92,7 @@ class Game:
         for seat, player in self.table.items():
             hand = Hand(name = player.full_name,player= player)
             hand.display()
+            print(player.full_name + "Bankroll: " + str(player.bankroll))
             print('--------------------------------------------------')
             while hand.hand_value < 17:
                 print(player.full_name + " hits.")
@@ -77,6 +109,7 @@ class Game:
                 print(player.full_name + " stands with " + str(hand.hand_value))
             print('--------------------------------------------------')
             print(' ')
+            player.hand_value = hand.hand_value
         dealer_hand = Hand(name = self.dealer.full_name,player= self.dealer)
         dealer_hand.display()
         while dealer_hand.hand_value < 17:
@@ -94,11 +127,14 @@ class Game:
             print(self.dealer.full_name + " stands with " + str(dealer_hand.hand_value))
         print('--------------------------------------------------')
         print(' ')
+        self.dealer.hand_value = dealer_hand.hand_value
 
 
 
 game = Game(num_of_players=7, num_of_decks=8,min_bet = 20, max_bet=100)
 print(game.play_hand())
+print(game.display_table())
+print(game.evaluate_hand())
 
 
 

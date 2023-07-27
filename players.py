@@ -71,6 +71,7 @@ class Gambler(Player):
         self.full_name = first + ' ' + last
         self.bankroll = bank
         self.seat = position
+        self.current_bet  = 0
         self.minimum_bet = min
         self.maximum_bet = max
         self.cards = []
