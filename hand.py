@@ -39,7 +39,7 @@ class Hand:
             self.hand_value = sum(self.values)
     def display(self):
         card_titles = [card.card_title for card in self.hand]
-        print(self.name + ' hand:')
+        print(self.name + ' Hand:')
         print(card_titles)
         print(self.hand_value)
 

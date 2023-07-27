@@ -71,13 +71,16 @@ class Game:
                 player.bankroll += bet_amount
             elif hand == 21:
                 print(player.full_name + " beats dealer with blackjack.")
-                player.bankroll += bet_amount * 3
+                player.bankroll += bet_amount + (bet_amount*1.5)
             elif hand > 21:
                 print(player.full_name + " busts with " +str(hand))
                 player.bankroll -= bet_amount
-            else:
+            elif hand > target:
                 print(player.full_name + " beats dealer with " + str(hand) + '.')
                 player.bankroll += bet_amount * 2 
+            else:
+                print("Dealer beats " + player.full_name + " with " + str(self.dealer_hand) + '.')
+                player.bankroll= bet_amount * 2 
             print(player.full_name + " Current Bankroll: " + str(player.bankroll)) 
             print('--------------------------------------------------')   
     def play_hand(self):
@@ -92,7 +95,7 @@ class Game:
         for seat, player in self.table.items():
             hand = Hand(name = player.full_name,player= player)
             hand.display()
-            print(player.full_name + "Bankroll: " + str(player.bankroll))
+            print(player.full_name + " Bankroll: " + str(player.bankroll))
             print('--------------------------------------------------')
             while hand.hand_value < 17:
                 print(player.full_name + " hits.")
@@ -132,13 +135,10 @@ class Game:
 
 
 game = Game(num_of_players=7, num_of_decks=8,min_bet = 20, max_bet=100)
+
 print(game.play_hand())
-print(game.display_table())
+print('--------------------------------------------------')
 print(game.evaluate_hand())
-
-
-
-
 
 
 
