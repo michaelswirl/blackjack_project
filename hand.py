@@ -34,11 +34,10 @@ class Hand:
 
             
                 
-player_card_1 = Card(rank_index= 0,suit_index= 2)
-player_card_2 = Card(rank_index= 0,suit_index= 0)
-player_cards = [player_card_1,player_card_2]
+#player_card_1 = Card(rank_index= 0,suit_index= 2)
+#player_card_2 = Card(rank_index= 0,suit_index= 0)
+#player_cards = [player_card_1,player_card_2]
+#hand = Hand('Michael Curley',player_cards)
 
-hand = Hand('Michael Curley',player_cards)
-
-hand.display()
+#hand.display()
 

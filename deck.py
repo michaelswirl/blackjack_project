@@ -1,7 +1,9 @@
 from card import Card
 import random
+from typing import Dict
 
 class Deck():
+    COUNT_VALUES: Dict[str, int] = {'A': -1, '2': 1, '3': 1,'4': 1,'5': 1, '6': 1,'7': 0,'8': 0,'9':0, '10':-1, 'J':-1,'Q':-1,'K':-1}
     def __init__(self):
         self.current_card = None
         self.count = 0
@@ -14,9 +16,10 @@ class Deck():
                 self.cards.append(card)
                 self.rank_counter += 1
             self.suit_counter += 1
-    def shuffle(self):
+    def shuffle(self, times):
         random.seed = 46
-        random.shuffle(self.cards)
+        for i in range(times):
+            random.shuffle(self.cards)
     def display(self):
         titles = []
         for c in self.cards:
@@ -24,7 +27,9 @@ class Deck():
         return titles
     def deal(self):
         self.current_card = self.cards.pop(0)
-        self.count = len(self.cards)
+        print(f"Current card rank: {self.current_card.rank}")
+        print(f"Count value for this rank: {self.COUNT_VALUES[self.current_card.rank]}")
+        self.count += self.COUNT_VALUES[self.current_card.rank]
         return self.current_card
     def deal_to_table(self, table, dealer):
         dealer.cards.append(self.deal())

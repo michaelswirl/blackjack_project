@@ -3,13 +3,13 @@ from deck import Deck
 
 class Shoe(Deck):
     def __init__(self,number_of_decks):
+        self.count = 0 
         self.decks = []
         self.cards = []
         for i in range(number_of_decks):
             self.deck = Deck()
             self.decks.append(self.deck)
             self.cards += self.deck.cards
-            self.count = len(self.cards)
     def add_deck(self):
         deck = Deck()
         self.decks.append(deck)

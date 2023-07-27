@@ -33,6 +33,7 @@ class Game:
             self.table[self.counter] = gambler
             self.counter += 1
         self.shoe = Shoe(num_of_decks)
+        self.shoe.shuffle(25)
         self.shoe.deal_to_table(table= self.table,dealer=self.dealer)
     def display_table(self):
         for seat, player in self.table.items():
@@ -45,13 +46,17 @@ class Game:
                 print("Current Hand: ") 
                 hand = [card.card_title for card in player.cards]
                 print(hand)
+            print("Count: " + str(self.shoe.count))
         self.dealer_hand = [card.card_title for card in self.dealer.cards]
         print("Dealer Hand: ")
         print(self.dealer_hand)
+    def play_hand(self):
+        pass
+
     
 
     
-game = Game(num_of_players=4,num_of_decks=8,min_bet=2,max_bet=10)
+game = Game(num_of_players=7,num_of_decks=2,min_bet=2,max_bet=10)
 print(game.display_table())
 
 
