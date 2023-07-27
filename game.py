@@ -36,22 +36,24 @@ class Game:
         self.shoe.deal_to_table(table= self.table,dealer=self.dealer)
     def display_table(self):
         for seat, player in self.table.items():
-            print("Seat number: " + str(seat))
-            print("Player name: " + player.full_name)
-            print("Bankroll: " + str(player.bankroll))
-            print("Current Hand: ") 
-            hand = [card.card_title for card in player.cards]
-            print(hand)
+            if player is None:
+                pass
+            else:
+                print("Seat number: " + str(seat))
+                print("Player name: " + player.full_name)
+                print("Bankroll: " + str(player.bankroll))
+                print("Current Hand: ") 
+                hand = [card.card_title for card in player.cards]
+                print(hand)
         self.dealer_hand = [card.card_title for card in self.dealer.cards]
         print("Dealer Hand: ")
         print(self.dealer_hand)
     
 
     
-
-
-game = Game(num_of_players=7,num_of_decks=8,min_bet=2,max_bet=10)
+game = Game(num_of_players=4,num_of_decks=8,min_bet=2,max_bet=10)
 print(game.display_table())
+
 
 
 

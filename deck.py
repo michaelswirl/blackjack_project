@@ -14,7 +14,6 @@ class Deck():
                 self.cards.append(card)
                 self.rank_counter += 1
             self.suit_counter += 1
-        self.count = len(self.cards)
     def shuffle(self):
         random.seed = 46
         random.shuffle(self.cards)
@@ -31,24 +30,11 @@ class Deck():
         dealer.cards.append(self.deal())
         for i in range(0,2):
             for player in table.values():
-                card = self.deal()
-                player.cards.append(card)
+                if player is None:
+                    pass
+                else:
+                    card = self.deal()
+                    player.cards.append(card)
         dealer.cards.append(self.deal())
         
-    
-#deck = Deck()
-#print("Number of Cards in Deck:")
-#print(deck.count)
-#print("Unshuffled Deck:")
-#print(deck.display())
-#print("Shuffled Deck:")
-#deck.shuffle()
-#print(deck.display())
-#deck.deal()
-#print("Dealt Card:")
-#print(deck.current_card.card_title)
-#print("Number of Cards Left in Deck:")
-#print(len(deck.cards))
-#print("Remaining Deck:")
-#print(deck.display())
 
