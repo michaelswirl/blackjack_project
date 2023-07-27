@@ -79,7 +79,7 @@ class Game:
                 print(player.full_name + " beats dealer with " + str(hand) + '.')
                 player.bankroll += bet_amount * 2 
             else:
-                print("Dealer beats " + player.full_name + " with " + str(self.dealer_hand) + '.')
+                print("Dealer beats " + player.full_name + " with " + str(target) + '.')
                 player.bankroll= bet_amount * 2 
             print(player.full_name + " Current Bankroll: " + str(player.bankroll)) 
             print('--------------------------------------------------')   
