@@ -27,8 +27,6 @@ class Deck():
         return titles
     def deal(self):
         self.current_card = self.cards.pop(0)
-        print(f"Current card rank: {self.current_card.rank}")
-        print(f"Count value for this rank: {self.COUNT_VALUES[self.current_card.rank]}")
         self.count += self.COUNT_VALUES[self.current_card.rank]
         return self.current_card
     def deal_to_table(self, table, dealer):
@@ -41,5 +39,10 @@ class Deck():
                     card = self.deal()
                     player.cards.append(card)
         dealer.cards.append(self.deal())
+    def hit(self, player):
+        card = self.deal()
+        print(card.card_title)
+        return card
+
         
 

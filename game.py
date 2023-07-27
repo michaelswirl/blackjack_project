@@ -1,6 +1,7 @@
 from card import Card
 from deck import Deck
 from shoe import Shoe
+from hand import Hand
 from players import Player, Dealer, Gambler
 import random
 
@@ -18,6 +19,7 @@ class Game:
         self.dealer = Dealer(first=Dealer.POSSIBLE_FIRST_NAMES[self.first_index],
                         last=Dealer.POSSIBLE_LAST_NAMES[self.last_index])
         self.counter = 1
+        self.shoe = Shoe(num_of_decks)
         for gambler in range(num_of_players):
             first_index = random.randint(0,99)
             last_index = random.randint(0,99)
@@ -32,9 +34,6 @@ class Game:
                 )
             self.table[self.counter] = gambler
             self.counter += 1
-        self.shoe = Shoe(num_of_decks)
-        self.shoe.shuffle(25)
-        self.shoe.deal_to_table(table= self.table,dealer=self.dealer)
     def display_table(self):
         for seat, player in self.table.items():
             if player is None:
@@ -49,15 +48,40 @@ class Game:
             print("Count: " + str(self.shoe.count))
         self.dealer_hand = [card.card_title for card in self.dealer.cards]
         print("Dealer Hand: ")
-        print(self.dealer_hand)
+        print(self.dealer_hand[0])
     def play_hand(self):
-        pass
+        print(self.shoe.get_shoe_size())
+        self.shoe.shuffle(25)
+        self.shoe.deal_to_table(table= self.table,dealer=self.dealer)
+        for seat, player in self.table.items():
+            hand = Hand(name = player.full_name,player_cards = player.cards)
+            hand.display()
+            print('--------------------------------------------------')
+            while hand.hand_value < 17:
+                print(player.full_name + " hits.")
+                hit_card = self.shoe.hit(player)
+                hand.add_card(hit_card)
+                hand.display()
+                if hand.hand_value >= 17:
+                    break
+            if hand.hand_value > 21:
+                print(player.full_name + " busts with " + str(hand.hand_value)+ ".")
+            elif hand.hand_value == 21:
+                print(player.full_name + " Blackjack!") 
+            else:
+                print(player.full_name + " stands with " + str(hand.hand_value))
+            print('--------------------------------------------------')
 
-    
+       
+        
+try:
+    game2 = Game(num_of_players=7, num_of_decks=8,min_bet = 20, max_bet=100)
+    print(game2.play_hand())
+except Exception as e:
+    print("Exception occurred: ", e)
 
-    
-game = Game(num_of_players=7,num_of_decks=2,min_bet=2,max_bet=10)
-print(game.display_table())
+
+
 
 
 
